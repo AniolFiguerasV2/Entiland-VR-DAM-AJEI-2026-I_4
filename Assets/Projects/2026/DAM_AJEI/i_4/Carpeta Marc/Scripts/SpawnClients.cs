@@ -3,53 +3,46 @@ using UnityEngine;
 
 public class SpawnClients : MonoBehaviour
 {
-    [SerializeField] private float countdown;
-
-    [SerializeField] private GameObject spawnPoint;
-
-    public Wave[] waves;
-
-    private int currentWaveIndex = 0;
+    public GameObject client;
+    public bool isFull = false;
+    public int currentclients = 0;
+    public int maxclients = 5;
+    public Transform destinationPoint;
+    public Transform[] spawnPoints;
 
     void Start()
     {
-        for (int i = 0;i < waves.Length; i++)
-        {
-            waves[i].clientsLeft = waves[i].clients.Length;
-        }
+        StartCoroutine(SpawnRoutine());
     }
-
-
-    void Update()
+    public void SpawnRanPosition()
     {
-        countdown -= Time.deltaTime;
-
-        if (countdown < 0)
+        if (!isFull)
         {
-            countdown = waves[currentWaveIndex].timeToNextEnemy;
-            StartCoroutine(SpawnWave());
+            int randomIndex = Random.Range(0, spawnPoints.Length);
+            Transform spawnPoint = spawnPoints[randomIndex];
+            GameObject tempClient = Instantiate(client, spawnPoint.position, Quaternion.identity);
+            tempClient.GetComponent<ClientOptions>().destination = destinationPoint;
+            currentclients++;
+            if(currentclients == maxclients)
+            {
+                isFull = true;
+            }
+        }
+        else if (isFull)
+        {
+            if(currentclients <= maxclients)
+            {
+                isFull= false;
+            }
         }
     }
 
-    private IEnumerator SpawnWave()
+    IEnumerator SpawnRoutine()
     {
-        for (int i = 0; i < waves[currentWaveIndex].clients.Length; i++)
+        while (true)
         {
-            Clients client = Instantiate(waves[currentWaveIndex].clients[i], spawnPoint.transform); ;
-
-            client.transform.SetParent(spawnPoint.transform);
-
-            yield return new WaitForSeconds(waves[currentWaveIndex].timeToNextEnemy);
+            SpawnRanPosition();
+            yield return new WaitForSeconds(30f);
         }
     }
-}
-
-[System.Serializable]
-public class Wave
-{
-    public Clients[] clients;
-    public float timeToNextEnemy;
-    public float timeToNextWave;
-
-    [HideInInspector] public int clientsLeft;
 }
