@@ -23,6 +23,7 @@ public class IceCreamParent : MonoBehaviour
             //currentIceCreamBallChild.SetScale(Vector3.one * currnetScale);
             currentIceCreamBallChild.currnetScale = currnetScale * ScaleMultipler;
         }
+
     }
 
     private void OnTriggerExit(Collider other)
