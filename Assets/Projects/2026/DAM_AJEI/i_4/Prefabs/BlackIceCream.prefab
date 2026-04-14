@@ -60,8 +60,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackIceCream
       objectReference: {fileID: 0}
+    - target: {fileID: 8805798668615140384, guid: d1fead0e993f0f54e83a7bc1af2d7685, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8550845131584310141, guid: c3d82b36d8a4f9249a833bf60cca78e3, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7612431792939336217, guid: d1fead0e993f0f54e83a7bc1af2d7685, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1fead0e993f0f54e83a7bc1af2d7685, type: 3}

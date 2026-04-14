@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PinkIceCream
       objectReference: {fileID: 0}
+    - target: {fileID: 8805798668615140384, guid: d1fead0e993f0f54e83a7bc1af2d7685, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -1981751554904446861, guid: ece454498df94bd49b3e675cff6ef719, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
